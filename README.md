@@ -29,6 +29,13 @@ This project trains a character-level RNN to generate music in ABC notation usin
 - `scikit-learn`, `NumPy` – data processing
 - RNN model (can be implemented using PyTorch, TensorFlow, or NumPy)
 
+## Credits
+
+This project is inspired by and builds upon materials from the [MIT 6.S191: Introduction to Deep Learning](http://introtodeeplearning.com) course.  
+Original labs are released under the MIT License and can be found [here](https://github.com/aamini/introtodeeplearning).
+
+Modifications, additions, and extensions are my own.
+
 ## Getting Started
 
 ```bash
@@ -37,10 +44,3 @@ cd musicgen-nottingham
 python -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
-
-## Credits
-
-This project is inspired by and builds upon materials from the [MIT 6.S191: Introduction to Deep Learning](http://introtodeeplearning.com) course.  
-Original labs are released under the MIT License and can be found [here](https://github.com/aamini/introtodeeplearning).
-
-Modifications, additions, and extensions are my own.
