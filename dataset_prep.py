@@ -2,6 +2,7 @@ from pathlib import Path
 import random
 from music21 import converter
 import os
+from sklearn.model_selection import train_test_split
 
 
 def split_abc_file(text):
@@ -31,12 +32,17 @@ def load_all_tunes():
         all_tunes.extend(tunes)
     return all_tunes
 
-    
+#train-test split
+
+def split_dataset(test_size = 0.1,random_state=42):
+    all_tunes =load_all_tunes()
+    return train_test_split(all_tunes,test_size=test_size,random_state=random_state)
+
 #Converting an abc to a wav audio file for format check
 if __name__ == "__main__":
     the_tunes = load_all_tunes()
     abc = random.choice(the_tunes)
     score = converter.parse(abc, format = 'abc')
     score.write('midi', fp='test.mid')
-    os.system("fluidsynth -ni /path/to/FluidR3_GM.sf2 test.mid -F test.wav -r 44100")
+    os.system("/Users/s.sevinc/musicgen-nottingham/dataset/FluidR3_GM.sf2") #replace it with path to the file FluidR3_GM.sf2
     os.remove("test.wav")
