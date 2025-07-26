@@ -22,15 +22,12 @@ class Preprocess:
         num_sequences = len(self.vectorized_data)// (seq_length+1)    
         usable_data =  self.vectorized_data[:num_sequences*(seq_length+1)]
         sequence = usable_data.reshape((num_sequences, seq_length+1))
-        inputs = sequence[:,:-1]
-        targets = sequence[:,1:]
+        input_batches = []
+        target_batches = []
 
-        num_batches = num_sequences// batch_size
-        inputs= inputs[:num_batches*batch_size]
-        targets = targets[:num_batches*batch_size]
-
-        input_batches = inputs.reshape((num_batches,batch_size,seq_length))
-        target_batches = targets.reshape((num_batches,batch_size, seq_length))
+        for seq in sequence:
+            input_batches.append(seq[:seq_length])
+            target_batches.append(seq[1:])
 
         return input_batches,target_batches
     
