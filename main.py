@@ -20,7 +20,7 @@ def vectorize(string):
 vectorize(songs_joined)
 """
 
-pr = Preprocess()
-input_batches,target_batches = pr.create_batches(seq_length=10,batch_size=2)
+prep = Preprocess()
+input_batches,target_batches = prep.create_batches(seq_length=10,batch_size=2)
 print("Input example:", input_batches[0][0])
 print("Target example:", target_batches[0][0])
