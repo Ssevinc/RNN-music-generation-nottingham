@@ -6,7 +6,7 @@ import torch.optim as optim
 class LSTMModel(nn.Module):
     def __init__(self, vocab_size,embedding_dim,hidden_size):
         super(LSTMModel,self).__init__()
-        super.hidden_size = hidden_size
+        self.hidden_size = hidden_size
         self.embedding = nn.Embedding(vocab_size,embedding_dim)
 
         self.lstm = nn.LSTM(embedding_dim,hidden_size,batch_first=True)

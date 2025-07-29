@@ -6,7 +6,7 @@ all_tunes = load_all_tunes()
 
 class Preprocess:
     def __init__(self):
-        self.train_tunes, self.test_tunes = split_dataset()
+        self.train_tunes = all_tunes
         self.songs_joined = "n\n".join(self.train_tunes)
         self.vocab = sorted(set(self.songs_joined))
         self.char2idx = {u: i for i, u in enumerate(self.vocab)}

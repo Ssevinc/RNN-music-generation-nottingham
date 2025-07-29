@@ -1,5 +1,4 @@
 import random
-from sklearn.model_selection import train_test_split
 import numpy as np
 from preprocess import Preprocess
 import torch
@@ -32,13 +31,6 @@ x_batch = x_batch.to(device)
 y_batch = y_batch.to(device)
 
 vocab_size = len(prep.vocab)
-model = LSTMModel(vocab_size,256,1024).to(device)
 
-criterion = nn.CrossEntropyLoss()
-optimizer = optim.Adam(model.parameters(), lr=0.001)
 
-for epoch in range(10):
-    model.train()
-    optimizer.zero_grad()
-    
 
