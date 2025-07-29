@@ -1,13 +1,13 @@
-matplotlib==3.8.0
-matplotlib-inline @ file:///home/conda/feedstock_root/build_artifacts/matplotlib-inline_1660814786464/work
-mitdeeplearning==0.7.5
-numpy @ file:///Users/cbousseau/work/recipes/ci_py311/numpy_and_numpy_base_1677921358445/work
-ome/conda/feedstock_root/build_artifacts/parso_1638334955874/work
-pathspec==0.11.2
-scikit-learn==1.6.1
-tokenizers==0.21.1
 torch==2.0.1
 torchaudio==2.0.2
 torchvision==0.15.2
 numpy==1.23.5
+matplotlib==3.8.0
+matplotlib-inline
 music21==9.7.1
+pathspec==0.11.2
+tokenizers==0.21.1
+
+# Additional dependency:
+# Install abc2midi with Homebrew: brew install abcmidi
+
