@@ -27,7 +27,7 @@ This project trains a character-level RNN to generate music in ABC notation usin
 - Python
 - `music21`, `fluidsynth` – symbolic-to-audio conversion
 - `scikit-learn`, `NumPy` – data processing
-- RNN model (can be implemented using PyTorch, TensorFlow, or NumPy)
+- RNN model (implemented essentially using PyTorch)
 
 ## Credits
 
