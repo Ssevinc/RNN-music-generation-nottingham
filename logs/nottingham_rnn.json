@@ -1,0 +1,64 @@
+{
+    "experiment": "nottingham_rnn",
+    "timestamp": "20250729-183307",
+    "params": {
+        "embedding_dim": 256,
+        "hidden_size": 512,
+        "seq_length": 50,
+        "batch_size": 16,
+        "num_epochs": 10,
+        "learning_rate": 0.0005
+    },
+    "metrics": [
+        {
+            "epoch": 1,
+            "train_loss": 1.2040693899099018,
+            "val_loss": null
+        },
+        {
+            "epoch": 2,
+            "train_loss": 0.9704160491461621,
+            "val_loss": null
+        },
+        {
+            "epoch": 3,
+            "train_loss": 0.8859771501386199,
+            "val_loss": null
+        },
+        {
+            "epoch": 4,
+            "train_loss": 0.8201218632716205,
+            "val_loss": null
+        },
+        {
+            "epoch": 5,
+            "train_loss": 0.7624846459953951,
+            "val_loss": null
+        },
+        {
+            "epoch": 6,
+            "train_loss": 0.7090530167592572,
+            "val_loss": null
+        },
+        {
+            "epoch": 7,
+            "train_loss": 0.6601059960438364,
+            "val_loss": null
+        },
+        {
+            "epoch": 8,
+            "train_loss": 0.6129401959771826,
+            "val_loss": null
+        },
+        {
+            "epoch": 9,
+            "train_loss": 0.564890033605501,
+            "val_loss": null
+        },
+        {
+            "epoch": 10,
+            "train_loss": 0.5204028036954498,
+            "val_loss": null
+        }
+    ]
+}
