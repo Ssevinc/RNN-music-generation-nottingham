@@ -2,7 +2,6 @@ from pathlib import Path
 import random
 from music21 import converter
 import os
-from sklearn.model_selection import train_test_split
 
 
 def split_abc_file(text):
