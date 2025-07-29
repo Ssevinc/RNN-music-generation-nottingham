@@ -32,12 +32,6 @@ def load_all_tunes():
         all_tunes.extend(tunes)
     return all_tunes
 
-#train-test split
-
-def split_dataset(test_size = 0.1,random_state=42):
-    all_tunes =load_all_tunes()
-    return train_test_split(all_tunes,test_size=test_size,random_state=random_state)
-
 #Converting an abc to a wav audio file for format check
 if __name__ == "__main__":
     the_tunes = load_all_tunes()
