@@ -1,36 +1,52 @@
+import torch
+from model import LSTMModel
+from preprocess import Preprocess
 import random
 import numpy as np
-from preprocess import Preprocess
-import torch
-import torch.nn as nn
-import torch.optim as optim
-from model import LSTMModel
 
-
-prep = Preprocess()
-
-#test vectorized data
-vectorized = prep.vectorized_data
-print("Sample vectorized data:", vectorized[:10])
-
-#create batches (numpy arrays)
-input_batches,target_batches = prep.create_batches(seq_length=10,batch_size=2)
-
-assert len(input_batches) == len(target_batches)
-assert all(len(seq) == 10 for seq in input_batches)
-assert all(len(seq) == 10 for seq in target_batches)
-
-x_batch = torch.tensor(np.array(input_batches), dtype=torch.long)
-y_batch = torch.tensor(np.array(target_batches), dtype=torch.long)
-
-print("x_batch shape:", x_batch.shape)  # should be [batch_size, seq_length]
-print("y_batch shape:", y_batch.shape)
+embedding_dim = 256
+hidden_size = 512
+generate_length = 300
+model_path = "trained_model.pt"
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-x_batch = x_batch.to(device)
-y_batch = y_batch.to(device)
+
+prep = Preprocess()
+stoi = prep.stoi
+itos = prep.itos
 
 vocab_size = len(prep.vocab)
+
+model = LSTMModel(vocab_size,embedding_dim,hidden_size).to(device)
+model.load_state_dict(torch.load(model_path,map_location=device))
+model.eval() # model on evaluation mode not training, just generating
+
+#choosing the first token to start generation
+seed = [stoi['X']] if 'X' in stoi else [random.randint(0,vocab_size-1)]
+
+input_seq = torch.tensor(seed,dtype=torch.long).unsqueeze(0).to(device)
+generated = seed.copy()
+state = None
+
+for _ in range(generate_length):
+    out,state= model(input_seq, state, return_state= True)
+    out = out[:, -1, :]
+    probs = torch.softmax(out, dim=1)
+    next_token = torch.multinomial(probs, num_samples=1).item()
+
+    generated.append(next_token)
+    input_seq = torch.tensor([[next_token]],dtype=torch.long).to(device)
+
+abc_music = ''.join([itos[i] for i in generated])
+
+print("Generated ABC Music")
+print(abc_music)
+
+with open("generated.abc", "w") as f:
+    f.write(abc_music)
+
+
+
 
 
 

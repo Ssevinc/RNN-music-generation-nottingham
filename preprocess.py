@@ -11,6 +11,8 @@ class Preprocess:
         self.vocab = sorted(set(self.songs_joined))
         self.char2idx = {u: i for i, u in enumerate(self.vocab)}
         self.idx2char = np.array(self.vocab)
+        self.stoi = self.char2idx  # string to index
+        self.itos = self.idx2char
         self.vectorized_data = self.vectorize(self.songs_joined)
 
     def vectorize(self,string):
