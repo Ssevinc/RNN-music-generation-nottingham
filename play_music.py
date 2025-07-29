@@ -1,43 +1,43 @@
 """Now the most fun part, its time to listen to the generated music!!"""
-from music21 import converter, stream
+
 import subprocess
 import os
-import copy 
 
+# --- File paths ---
 abc_file = "generated.abc"
 midi_file = "generated.mid"
 wav_file = "generated.wav"
+soundfont_path = "/Users/s.sevinc/musicgen-nottingham/FluidR3_GM.sf2"  # Download and adjust the path to this file
 
-soundfont_path = "/Users/s.sevinc/musicgen-nottingham/FluidR3_GM.sf2" #replace this with the path to the .sf2 file
 
-#first convert the abc file to a midi file
+#First, convert the ABC file to a MIDI file.
+
 try:
-    print(f"Reading {abc_file} ...")
-    score = converter.parse(abc_file, format='abc')
+    subprocess.run(["abc2midi", abc_file, "-o", midi_file], check=True)
     print(f"MIDI created: {midi_file}")
-except Exception as e:
-    print("Failed to convert ABC to a MIDI file: ", e)
+except subprocess.CalledProcessError as e:
+    print("Failed to convert ABC to MIDI:", e)
     exit()
 
-#second, covnert the MIDI file to a wav file with fluidsynth
+
+#Second, covnert the MIDI file to a wav file with fluidsynth.
 
 try:
-    print(f"Converting {midi_file} to {wav_file }")
     subprocess.run([
         "fluidsynth",
-        "-ni",
         soundfont_path,
         midi_file,
         "-F",
         wav_file,
         "-r", "44100"
     ], check=True)
-    print(f" Wav file created: {wav_file}")
+    print(f"WAV created: {wav_file}")
 except subprocess.CalledProcessError as e:
-    print("Failed to convert MIDI:", e)
+    print("Failed to convert MIDI to WAV: ", e)
     exit()
 
-#Autoplay the generated file (on macOS)
+
+#Autoplay the generated file (on macOS).
 
 try:
     subprocess.run(["open", wav_file])
