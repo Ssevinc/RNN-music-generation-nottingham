@@ -1,12 +1,12 @@
 import torch
-from model import LSTMModel
-from preprocess import Preprocess
+from src.model import LSTMModel
+from src.preprocess import Preprocess
 import random
 import numpy as np
 
 embedding_dim = 256
 hidden_size = 512
-generate_length = 300
+generate_length = 400
 model_path = "trained_model.pt"
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
@@ -42,7 +42,7 @@ abc_music = ''.join([itos[i] for i in generated])
 print("Generated ABC Music")
 print(abc_music)
 
-with open("generated.abc", "w") as f:
+with open("generated_sample_2.abc", "w") as f:
     f.write(abc_music)
 
 
