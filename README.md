@@ -27,7 +27,27 @@ This project trains a character-level RNN to generate music in ABC notation usin
 - Python
 - `music21`, `fluidsynth` – symbolic-to-audio conversion
 - `scikit-learn`, `NumPy` – data processing
-- RNN model (implemented essentially using PyTorch)
+- RNN model (implemented using PyTorch)
+
+## Model;
+Type: LSTM (Recurrent Neural Network)
+Embedding Dim: 256
+Hidden Size: 512
+Training Epochs: 10
+Batch Size: 16
+Sequence Length: 50
+Loss Function: CrossEntropyLoss
+Optimizer: Adam (lr = 0.0005)
+
+## Results;
+Final training loss: ~0.52
+Generated pieces range from 15 to 45 seconds, depending on the number of predicted tokens and their rhythmic content.
+ABC output is converted into .mid and then .wav using abc2midi and fluidsynth.
+
+## Limitations;
+Repetition in outputs: Introduce temperature sampling to control randomness and avoid loops.
+Single-layer LSTM: Try multi-layer LSTM or GRU for improved memory.
+Character-level modeling: Move toward token-level modeling (notes, durations, etc.).
 
 ## Credits
 
